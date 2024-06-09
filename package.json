@@ -1,0 +1,41 @@
+{
+  "name": "my-electron-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development concurrently \"npm run sass\" \"npm run electron\"",
+    "sass": "sass --watch assets/scss:assets/css",
+    "electron": "electron .",
+    "build": "electron-packager . --out=dist --overwrite",
+    "publish": "build -p always",
+    "dist": "electron-builder build --win",
+    "dist:win": "npm run dist -- -w",
+    "dist:mac": "npm run dist -- -m",
+    "dist:linux": "npm run dist -- -l"
+  },
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "ejs-electron": "^2.0.0",
+    "cross-env": "^7.0.3",
+    "electron-updater": "^4.3.5",
+    "electron-log": "^4.3.1"
+  },
+  "devDependencies": {
+    "electron": "^15.0.0",
+    "sass": "^1.35.2",
+    "electron-reload": "^1.5.0",
+    "concurrently": "^6.2.0",
+    "electron-packager": "^15.0.0"
+  },
+  "build": {
+    "appId": "com.mycompany.myapp",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "antxny",
+        "repo": "electron-app"
+      }
+    ]
+  }
+}
